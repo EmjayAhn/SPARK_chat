@@ -2,11 +2,73 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>SPARK</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
+  <style>
+  	html, body{
+	    margin: 0;
+	    padding: 0;
+	    height: 100%;
+    }
+
+	/* div{
+	  	border-color: #92a8d1;
+	} */
+	.container{
+		/* margin: 2px auto; */
+		border: 1px solid black;
+	}
+	#header_chat{
+		height: 90%;
+		margin: 0 auto;
+		padding: 0;
+	}
+	#bottom_container{
+		height: 10%;
+	}
+
+	header {
+	  background-color: #666;
+	  padding: 10px;
+	  text-align: left;
+	  font-size: 35px;
+	  color: white;
+	  height: 10%;
+	}
+
+	#chat_container{
+		height: 90%;
+	}
+
+  </style>
+
   <body>
-    <p>
-      chat.html
-    </p>
+	<div class="container" id="header_chat">
+		<nav class="navbar navbar-light bg-light">
+		  <a class="navbar-brand" href="#">
+		    <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+		    SPARK
+		  </a>
+		</nav>
+
+		<div class="container" id="chat_container">
+  			chat
+  	  	</div>
+	</div>
+
+	  <!-- <div class="container" id="side_container">
+		  current users
+	  </div> -->
+
+  	</div>
+	<div class="container input-group mb-3" id="inputbox">
+	  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+	  <div class="input-group-append">
+	    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+	  </div>
+	</div>
+
+
   </body>
 </html>
