@@ -4,10 +4,6 @@ from flask_socketio import SocketIO, send
 app = Flask(__name__)
 socket_io = SocketIO(app)
 
-
-if __name__ == '__main__':
-    socket_io.run(app, debug=True)
-
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -29,3 +25,6 @@ def request(message):
         to_client['type'] = 'normal'
 
     send(to_client, broadcast=True)
+
+if __name__ == '__main__':
+    socket_io.run(app, debug=True)
