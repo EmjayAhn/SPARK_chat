@@ -1,0 +1,15 @@
+.position {
+  position: absolute;
+}
+.ztop {
+  z-index: 3;
+}
+
+.zbottom {
+  z-index: -3;
+}
+
+.midline{
+  top: 50%;
+  left: 50%;
+}
