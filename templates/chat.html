@@ -43,7 +43,24 @@
 
 	#chat_container{
 		height: 90%;
+    float:left;
+    position:relative;
+    width: 80%;
 	}
+
+
+
+  #side_container {
+  float: right;
+  width: 20%;
+  height: 90%;
+  background: #2c3e50;
+  color: #f5f5f5;
+  overflow: hidden;
+  position: relative;
+}
+
+
 
   </style>
 
@@ -80,6 +97,7 @@
     });
   </script>
 
+
   <div class="container" id="header_chat">
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">
@@ -88,14 +106,22 @@
       </a>
     </nav>
 
+
     <div class="container" id="chat_container">
       <ul id="messages"></ul>
     </div>
+    <div class="container" id="side_container">
+        current users
+      </div>
+
   </div>
 
-  <div class="container" id="side_container">
-		  current users
-	  </div>
+
+
+
+
+
+
 
   </div>
   <div class="container input-group mb-3" id="inputbox">
