@@ -14,30 +14,6 @@
 			background-position: center;
 		}
 
-
-		.button1 {
-			background-color: Transparent;
-			background-repeat: no-repeat;
-			cursor: pointer;
-			overflow: hidden;
-			outline: none;
-			border-radius: 30px;
-			border: none;
-			font-family: "Times New Roman";
-			font-size: 20px;
-			font-weight: bold;
-			float: right;
-			margin-left: 10px;
-		}
-
-		.name {
-			text-align: center;
-			max-width: 500px;
-			margin: 0 auto;
-			font-size: 50px;
-			font-family: cursive;
-		}
-
 		.contents {
 			height: calc(100% - 120px);
 			max-width: 680px;
@@ -51,43 +27,25 @@
 			vertical-align: middle;
 			margin: 0 auto;
 			/* height: 50px; */
-
 		}
 
-		.footer {
-			height: 20px;
-			padding: 20px;
-			color: white;
-			text-align: center;
-		}
-
-		.login {
-			border-radius: 30px;
-			width: 100%;
-			padding: 12px 20px;
-			margin: 8px 0;
-			display: inline-block;
-			border: 1px solid #ccc;
-			box-sizing: border-box;
-			background-color: #d1d1d1;
-		}
-
-		input[type=text],
-		input[type=password] {
-			border-radius: 30px;
+		.form-control{
+			float: left;
 			width: 80%;
-			padding: 18px 20px;
-			margin: 8px 0;
-			display: inline-block;
-			border: 1px solid #ccc;
-			box-sizing: border-box;
-			background-color: #d1d1d1;
+		}
+		#emoji_button{
+			float: right;
+			width: 20%;
+			border-color: black;
 		}
 
+<<<<<<< HEAD
 		ul {
 			list-style-type: none;
 		}
 
+=======
+>>>>>>> 8bdd85b824cd450a62138b692ec754a6d5fe7b31
 	</style>
 </head>
 
@@ -103,19 +61,13 @@
 				SPARK
 			</div>
 			<input class="form-control" placeholder="enter username">
-			<button class="btn btn-primary" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-				Button with data-target
+			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+
 			</button>
 
 			<div class="collapse" id="collapseExample">
 				<div class="card card-body">
-					<ul class="profile_icons">
-						<li><img src="{{url_for('static', filename='a.png')}}" width="60" height="60"></li>
-						<!-- <li><img src="./profile/b.png" width="60" height="60"></li>
-						<li><img src="./profile/c.png" width="60" height="60"></li>
-						<li><img src="./profile/d.png" width="60" height="60"></li>
-						<li><img src="./profile/e.png" width="60" height="60"></li> -->
-					</ul>
+					<img src="{{url_for('static', filename='a.png')}}" />
 				</div>
 			</div>
 		</div>
