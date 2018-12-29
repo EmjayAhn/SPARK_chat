@@ -1,15 +1,63 @@
+body, html{
+  background-repeat: no-repeat;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+}
 .position {
   position: absolute;
 }
-.ztop {
+.spark {
   z-index: 3;
+  margin: 0 auto;
 }
+
 
 .zbottom {
   z-index: -3;
+  margin: 0 auto;
 }
 
-.midline{
-  top: 50%;
-  left: 50%;
+.title{
+  font-size: 300%;
+  text-align: center;
+  vertical-align: middle;
 }
+
+.contents{
+  margin: 0 auto;
+  text-align: center;
+  display: table;
+}
+
+.wrap {
+   display: table;
+   width: 100%;
+}
+#lower {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle; */
+}
+
+
+
+
+
+/*
+.contents{
+        height: calc(100% - 120px);
+        color: white;
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+        display: table;
+      }
+
+      .contents > .wrap{
+        display: table-cell;
+        vertical-align: middle;
+        margin: 0 auto;
+        height: 50px;
+      } */

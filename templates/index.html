@@ -6,14 +6,30 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="./source/index.css">
   <title>SPARK</title>
+
 </head>
 
 <body>
-  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="position zbottom">
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="position zbottom" width=100%>
     <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
   </video>
-  <div class="position midline ztop" >
-    <h1>SPARK</h1>
+  <div class="container">
+      <div class="spark ztop" >
+        <center class="title spark">SPARK</center>
+      </div>
+  </div>
+
+
+  <div class="contents">
+      <div class="wrap">
+          <div id="lower">
+              <input class="login" type="text" placeholder="대화명을 입력하세요!!" name="uname" required>
+              <div class = "emotion box">
+              </div>
+              <input type="submit" value="다음">
+          </div>
+          <button class="button2"type="button" name="button">Go!</button><br>
+      </div>
   </div>
 
   <input placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
