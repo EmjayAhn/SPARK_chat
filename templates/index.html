@@ -6,10 +6,10 @@
 	<meta charset="utf-8">
 	<title>SPARK</title>
 	<style media="screen">
+
 		body, html {
 			background-repeat: no-repeat;
 			height: 100%;
-
 			background-size: cover;
 			background-position: center;
 		}
@@ -39,13 +39,10 @@
 			border-color: black;
 		}
 
-<<<<<<< HEAD
-		ul {
-			list-style-type: none;
+		td {
+			margin: 10 10;
 		}
 
-=======
->>>>>>> 8bdd85b824cd450a62138b692ec754a6d5fe7b31
 	</style>
 </head>
 
@@ -58,7 +55,7 @@
 
 		<div class="wrap">
 			<div class="logo_box">
-				SPARK
+				<img src="{{url_for('static', filename='logo.jpg')}}" width=500 height=200>
 			</div>
 			<input class="form-control" placeholder="enter username">
 			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
@@ -67,7 +64,22 @@
 
 			<div class="collapse" id="collapseExample">
 				<div class="card card-body">
-					<img src="{{url_for('static', filename='a.png')}}" />
+					<table>
+						<tr>
+							<td><img src="{{url_for('static', filename='a.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='b.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='c.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='d.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='e.png')}}" width=80 height=80></td>
+						</tr>
+						<tr>
+							<td><img src="{{url_for('static', filename='f.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='g.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='h.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='i.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='j.png')}}" width=80 height=80></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
