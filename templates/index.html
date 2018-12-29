@@ -1,97 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>SPARK</title>
-    <style media="screen">
-      body, html{
-        background-image: url("https://www.miami.com/wp-content/uploads/sites/2/2016/08/sunsetMiami.jpg");
-        background-repeat: no-repeat;
-        height: 100%;
 
-        background-size: cover;
-        background-position: center;
-      }
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<title>SPARK</title>
+	<style media="screen">
+		body, html {
+			background-repeat: no-repeat;
+			height: 100%;
+
+			background-size: cover;
+			background-position: center;
+		}
 
 
-      .button1{
-        background-color: Transparent;
-        background-repeat:no-repeat;
-        cursor:pointer;
-        overflow: hidden;
-        outline:none;
-        border-radius: 30px;
-        border: none;
-        font-family: "Times New Roman";
-        font-size: 20px;
-        font-weight: bold;
-        float: right;
-        margin-left: 10px;
-      }
+		.button1 {
+			background-color: Transparent;
+			background-repeat: no-repeat;
+			cursor: pointer;
+			overflow: hidden;
+			outline: none;
+			border-radius: 30px;
+			border: none;
+			font-family: "Times New Roman";
+			font-size: 20px;
+			font-weight: bold;
+			float: right;
+			margin-left: 10px;
+		}
 
-      .name{
-        text-align: center;
-        max-width: 500px;
-        margin: 0 auto;
-        font-size: 50px;
-        font-family: cursive;
-        /* margin-left: 60px */
-        /* padding: 10px 10px */
-        /* margin: 10px 10px 10px 10px */
-      }
+		.name {
+			text-align: center;
+			max-width: 500px;
+			margin: 0 auto;
+			font-size: 50px;
+			font-family: cursive;
+		}
 
-      /* .top > .wrap > img{
-        width: 200px;
-        height: 40px
+		.contents {
+			height: calc(100% - 120px);
+			max-width: 680px;
+			margin: 0 auto;
+			text-align: center;
+			display: table;
+		}
 
-      } */
+		.contents>.wrap {
+			display: table-cell;
+			vertical-align: middle;
+			margin: 0 auto;
+			/* height: 50px; */
 
-      .contents{
-        height: calc(100% - 120px);
-        color: white;
-        max-width: 680px;
-        margin: 0 auto;
-        text-align: center;
-        display: table;
-      }
+		}
 
-      .contents > .wrap{
-        display: table-cell;
-        vertical-align: middle;
-        margin: 0 auto;
-        height: 50px;
+		.footer {
+			height: 20px;
+			padding: 20px;
+			color: white;
+			text-align: center;
+		}
 
-      }
+		.login {
+			border-radius: 30px;
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			background-color: #d1d1d1;
+		}
 
-      .footer{
-        height: 20px;
-        padding: 20px;
-        color: white;
-        text-align: center;
-      }
+		input[type=text],
+		input[type=password] {
+			border-radius: 30px;
+			width: 80%;
+			padding: 18px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			background-color: #d1d1d1;
+		}
 
-      .login{
-        border-radius: 30px;
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        background-color : #d1d1d1;
-      }
-
-      input[type=text], input[type=password] {
-        border-radius: 30px;
-        width: 80%;
-        padding: 18px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        background-color : #d1d1d1;
-}
-      .button2{
+		/* .button2{
         border-radius: 30px;
         width: 80%;
         padding: 12px 20px;
@@ -103,47 +96,37 @@
         cursor:pointer;
         font-family: "Times New Roman";
         font-size: 17px;
-      }
+      } */
+	</style>
+</head>
 
+<body>
 
+	<div class="top">
+	</div>
 
+	<div class="contents">
 
+		<div class="wrap">
+			<div class="logo_box">
+				SPARK
+			</div>
+			<input class="form-control" placeholder="enter username">
+			<button class="btn btn-primary" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+				Button with data-target
+			</button>
 
-    </style>
-  </head>
+			<div class="collapse" id="collapseExample">
+				<div class="card card-body">
+					images
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <body>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 
-    <div class="top">
-      <div class="back">
-        <button class="button1" type="button" name="button">&larr; back to home</button>
-
-        <h2 class="name">Better Than Me</h2>
-      </div>
-    </div>
-
-
-  <input placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <a href="./chat"><button>SPARK!</button></a>
-
-
-    <div class="contents">
-      <div class="wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/B-logo-1.png" alt="Better Then Me loge" height="100" width="100"><br>
-        <input class="login" type="text" placeholder="Enter Username" name="uname" required>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        <button class="button2"type="button" name="button">LOG IN</button><br>
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-
-      </div>
-    </div>
-
-
-    <div class="footer">
-      <p>Always Better Than Me</p>
-    </div>
-
-  </body>
 </html>
