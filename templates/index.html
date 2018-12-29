@@ -84,19 +84,10 @@
 			background-color: #d1d1d1;
 		}
 
-		/* .button2{
-        border-radius: 30px;
-        width: 80%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        background-color : #FFdead;
-        cursor:pointer;
-        font-family: "Times New Roman";
-        font-size: 17px;
-      } */
+		ul {
+			list-style-type: none;
+		}
+
 	</style>
 </head>
 
@@ -118,7 +109,13 @@
 
 			<div class="collapse" id="collapseExample">
 				<div class="card card-body">
-					images
+					<ul class="profile_icons">
+						<li><img src="{{url_for('static', filename='a.png')}}" width="60" height="60"></li>
+						<!-- <li><img src="./profile/b.png" width="60" height="60"></li>
+						<li><img src="./profile/c.png" width="60" height="60"></li>
+						<li><img src="./profile/d.png" width="60" height="60"></li>
+						<li><img src="./profile/e.png" width="60" height="60"></li> -->
+					</ul>
 				</div>
 			</div>
 		</div>
