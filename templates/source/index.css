@@ -8,10 +8,10 @@ body, html{
 .position {
   position: absolute;
 }
-.spark {
+/* .spark {
   z-index: 3;
   margin: 0 auto;
-}
+} */
 
 
 .zbottom {
