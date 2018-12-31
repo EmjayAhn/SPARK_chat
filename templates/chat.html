@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -106,3 +107,143 @@
     </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>SPARK</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+</head>
+<style>
+  html, body{
+	    margin: 0;
+	    padding: 0;
+	    height: 100%;
+    }
+
+	/* div{
+	  	border-color: #92a8d1;
+	} */
+	.container{
+		/* margin: 2px auto; */
+		border: 1px solid black;
+	}
+	#header_chat{
+		height: 90%;
+		margin: 0 auto;
+		padding: 0;
+	}
+	#bottom_container{
+		height: 10%;
+	}
+
+	header {
+	  background-color: #666;
+	  padding: 10px;
+	  text-align: left;
+	  font-size: 35px;
+	  color: white;
+	  height: 10%;
+	}
+
+	#chat_container{
+		height: 90%;
+    float:left;
+    position:relative;
+    width: 80%;
+	}
+
+
+
+  #side_container {
+  float: right;
+  width: 20%;
+  height: 90%;
+  background: #2c3e50;
+  color: #f5f5f5;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+  </style>
+
+<body>
+  <script type="text/javascript" charset='utf-8'>
+    $(document).ready(function() {
+      var sock = io.connect('http://127.0.0.1:5000');
+      sock.on('connect', function() {
+        var connect_string = 'new_connect';
+        sock.send(connect_string);
+      });
+
+      sock.on('hello', function(msg) {
+        $('#messages').append('<li>' + '>>Hello :' + msg + '</li>');
+        console.log('Received Hello Message');
+      });
+
+      sock.on('message', function(msg) {
+        // console.log(type(msg));
+        if (msg.type === 'normal') {
+          $('#messages').append('>> ' + msg.message + '<br>');
+        } else {
+          $('#messages').append('<li>' + msg.message + '</li>');
+        }
+        console.log('Received Message : ' + msg.type);
+      });
+
+
+
+      $('#sendbutton').on('click', function() {
+        sock.send($('#myMessage').val());
+        $('#myMessage').val('');
+      });
+    });
+  </script>
+
+
+  <div class="container" id="header_chat">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        SPARK
+      </a>
+    </nav>
+
+
+    <div class="container" id="chat_container">
+      <ul id="messages"></ul>
+    </div>
+    <div class="container" id="side_container">
+        current users
+      </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+  <div class="container input-group mb-3" id="inputbox">
+    <input id='myMessage' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="sendbutton">Button</button>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
+>>>>>>> d15d4250b7da8af62a8f78bcd2b2bd8624643351

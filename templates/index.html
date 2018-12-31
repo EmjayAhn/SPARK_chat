@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,3 +11,98 @@
     </p>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<title>SPARK</title>
+	<style media="screen">
+
+		body, html {
+			background-repeat: no-repeat;
+			height: 100%;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.contents {
+			height: calc(100% - 120px);
+			max-width: 680px;
+			margin: 0 auto;
+			text-align: center;
+			display: table;
+		}
+
+		.contents>.wrap {
+			display: table-cell;
+			vertical-align: middle;
+			margin: 0 auto;
+			/* height: 50px; */
+		}
+
+		.form-control{
+			float: left;
+			width: 80%;
+		}
+		#emoji_button{
+			float: right;
+			width: 20%;
+			border-color: black;
+		}
+
+		td {
+			margin: 10 10;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<div class="top">
+	</div>
+
+	<div class="contents">
+
+		<div class="wrap">
+			<div class="logo_box">
+				<img src="{{url_for('static', filename='logo.jpg')}}" width=500 height=200>
+			</div>
+			<input class="form-control" placeholder="enter username">
+			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+
+			</button>
+
+			<div class="collapse" id="collapseExample">
+				<div class="card card-body">
+					<table>
+						<tr>
+							<td><img src="{{url_for('static', filename='a.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='b.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='c.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='d.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='e.png')}}" width=80 height=80></td>
+						</tr>
+						<tr>
+							<td><img src="{{url_for('static', filename='f.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='g.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='h.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='i.png')}}" width=80 height=80></td>
+							<td><img src="{{url_for('static', filename='j.png')}}" width=80 height=80></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
+>>>>>>> d15d4250b7da8af62a8f78bcd2b2bd8624643351
