@@ -1,4 +1,5 @@
-from flask import *
+from flask import Flask
+from flask import render_template, url_for, request, redirect
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
@@ -8,6 +9,7 @@ socket_io = SocketIO(app)
 def home():
 
     return render_template('index.html')
+
 
 @app.route('/form', methods=['GET', 'POST'])
 def form():
@@ -33,5 +35,7 @@ def msg_send(message):
         to_client['type'] = 'normal'
     send(to_client, broadcast=True)
 
+
 if __name__ == '__main__':
-    socket_io.run(app, debug=True)
+	app.run(debug=True)
+	socket_io.run(app, debug=True)

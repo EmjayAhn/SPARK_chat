@@ -87,6 +87,7 @@
         }
         console.log('Received Message : ' + msg.type);
       });
+
       $('#sendbutton').on('click', function() {
         sock.send($('#myMessage').val());
         $('#myMessage').val('');
