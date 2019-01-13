@@ -3,7 +3,8 @@
 
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<meta charset="utf-8">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <meta charset="utf-8">
 	<title>SPARK</title>
 	<style media="screen">
 
@@ -48,6 +49,15 @@
 
 <body>
 
+  <script type="text/javascript">
+    $('#icons').live('click', function() {
+      var user_id = document.getElementById('id-box').value;
+      var user_icon = $(this).attr("class") + '.png';
+      console.log(user_id);
+      console.log(user_icon);
+    });
+  </script>
+
 	<div class="top">
 	</div>
 
@@ -57,28 +67,30 @@
 			<div class="logo_box">
 				<img src="{{url_for('static', filename='logo.jpg')}}" width=500 height=200>
 			</div>
-			<input class="form-control" placeholder="enter username">
+			<input class="form-control" id="id-box" placeholder="enter username">
 			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
 
 			</button>
 
 			<div class="collapse" id="collapseExample">
 				<div class="card card-body">
-					<table>
-						<tr>
-							<td><a href="/chat"><img src="{{url_for('static', filename='b.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='c.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='d.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='e.png')}}" width=80 height=80></a></td>
-						</tr>
-						<tr>
-							<td><a href="/chat"><img src="{{url_for('static', filename='f.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='g.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='h.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='i.png')}}" width=80 height=80></a></td>
-							<td><a href="/chat"><img src="{{url_for('static', filename='j.png')}}" width=80 height=80></a></td>
-						</tr>
-					</table>
+
+          <table>
+            <tr>
+                <td><a href="/chat"><img id='icons' class='a' src="{{url_for('static', filename='a.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='b' src="{{url_for('static', filename='b.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='c' src="{{url_for('static', filename='c.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='d' src="{{url_for('static', filename='d.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='e' src="{{url_for('static', filename='e.png')}}" width=80 height=80></a></td>
+            </tr>
+            <tr>
+                <td><a href="/chat"><img id='icons' class='f' src="{{url_for('static', filename='f.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='g' src="{{url_for('static', filename='g.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='h' src="{{url_for('static', filename='h.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='i' src="{{url_for('static', filename='i.png')}}" width=80 height=80></a></td>
+                <td><a href="/chat"><img id='icons' class='j' src="{{url_for('static', filename='j.png')}}" width=80 height=80></a></td>
+            </tr>
+          </table>
 				</div>
 			</div>
 		</div>

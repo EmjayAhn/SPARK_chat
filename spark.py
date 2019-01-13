@@ -6,6 +6,7 @@ socket_io = SocketIO(app)
 
 @app.route("/")
 def home():
+
     return render_template('index.html')
 
 @app.route("/chat")
@@ -17,7 +18,7 @@ def request(message):
     print("message : " + message)
     to_client = dict()
     if message == 'new_connect':
-        to_client['message'] = '유저가 입장하였습니다.'
+        to_client['message'] = '[{}]님이 입장하였습니다.'.format(user_id)
         to_client['type'] = 'connect'
     else:
         to_client['message'] = message

@@ -11,42 +11,42 @@
 </head>
 <style>
   html, body{
-	    margin: 0;
-	    padding: 0;
-	    height: 100%;
+        margin: 0;
+        padding: 0;
+        height: 100%;
     }
 
-	/* div{
-	  	border-color: #92a8d1;
-	} */
-	.container{
-		/* margin: 2px auto; */
-		border: 1px solid black;
-	}
-	#header_chat{
-		height: 90%;
-		margin: 0 auto;
-		padding: 0;
-	}
-	#bottom_container{
-		height: 10%;
-	}
+    /* div{
+          border-color: #92a8d1;
+    } */
+    .container{
+        /* margin: 2px auto; */
+        border: 1px solid black;
+    }
+    #header_chat{
+        height: 90%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    #bottom_container{
+        height: 10%;
+    }
 
-	header {
-	  background-color: #666;
-	  padding: 10px;
-	  text-align: left;
-	  font-size: 35px;
-	  color: white;
-	  height: 10%;
-	}
+    header {
+      background-color: #666;
+      padding: 10px;
+      text-align: left;
+      font-size: 35px;
+      color: white;
+      height: 10%;
+    }
 
-	#chat_container{
-		height: 90%;
+    #chat_container{
+        height: 90%;
     float:left;
     position:relative;
     width: 80%;
-	}
+    }
 
 
 
@@ -87,16 +87,13 @@
         }
         console.log('Received Message : ' + msg.type);
       });
-
-
-
       $('#sendbutton').on('click', function() {
         sock.send($('#myMessage').val());
         $('#myMessage').val('');
       });
     });
-  </script>
 
+  </script>
 
   <div class="container" id="header_chat">
     <nav class="navbar navbar-light bg-light">
@@ -113,15 +110,7 @@
     <div class="container" id="side_container">
         current users
       </div>
-
   </div>
-
-
-
-
-
-
-
 
   </div>
   <div class="container input-group mb-3" id="inputbox">
@@ -130,8 +119,6 @@
       <button class="btn btn-outline-secondary" type="button" id="sendbutton">Button</button>
     </div>
   </div>
-
-
 
 </body>
 
