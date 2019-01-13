@@ -9,16 +9,24 @@ def home():
 
     return render_template('index.html')
 
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+    global glon
+    if request.method == 'POST':
+        glon = request.form['glon']
+        return render_template('chat.html', glon=glon)
+
 @app.route("/chat")
 def chat():
     return render_template('chat.html')
 
 @socket_io.on("message")
-def request(message):
+def msg_send(message):
+    global glon
     print("message : " + message)
     to_client = dict()
     if message == 'new_connect':
-        to_client['message'] = '[{}]님이 입장하였습니다.'.format(user_id)
+        to_client['message'] = '[{}]님이 입장하였습니다.'.format(glon)
         to_client['type'] = 'connect'
     else:
         to_client['message'] = message
