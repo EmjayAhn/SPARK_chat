@@ -87,6 +87,10 @@
         }
         console.log('Received Message : ' + msg.type);
       });
+<<<<<<< HEAD
+=======
+
+>>>>>>> Feat: index and chat connected
       $('#sendbutton').on('click', function() {
         sock.send($('#myMessage').val());
         $('#myMessage').val('');
@@ -106,12 +110,19 @@
 
     <div class="container" id="chat_container">
       <ul id="messages"></ul>
+	  <p>from index: {{id}}<p>
     </div>
     <div class="container" id="side_container">
         current users
       </div>
   </div>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> Feat: index and chat connected
   </div>
   <div class="container input-group mb-3" id="inputbox">
     <input id='myMessage' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">

@@ -67,8 +67,20 @@
 			<div class="logo_box">
 				<img src="{{url_for('static', filename='logo.jpg')}}" width=500 height=200>
 			</div>
+<<<<<<< HEAD
 			<input class="form-control" id="id-box" placeholder="enter username">
 			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+=======
+
+			<form action="{{url_for('form')}}" method="post">
+				<input class="form-control" placeholder="enter username" name="user_id">
+		   		<!-- Galactic Longitude: <input type="text" name="glon"> -->
+			   <button type="submit"> Submit </button>
+		   </form>
+
+			<!-- <input class="form-control" placeholder="enter username" name="glone"> -->
+			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+>>>>>>> Feat: index and chat connected
 
 			</button>
 
