@@ -11,18 +11,24 @@
 ## 3. Version Detail
 #### 1) v0.0.1 감마버전(Local용) [2019.01.13]
 
-- **index.html**
-		1. user name, user icon 선택시 변수로 저장
-		2. user name은 input box에서 직접 입력, user icon은 dropdown toggle bar 로 선택
-		3. `GO!` 버튼 클릭 시, user name과 user icon값을 저장한 채로 채팅 페이지로 이동
+- **index.html**  
 
-- **chat.html**
-		1. 새로운 유저 입장 시, user name, user icon과 함께 입장했다는 메세지 표시
-		2. 오른쪽 `Current Users` 칸에 접속한 모든 유저의 user name 표시
-		3. 대화 시 input box에 메세지 입력 후 `Send 버튼 클릭` or `Enter 키 입력` 시 메세지 전송
-		4. 메세지가 많아져서 채팅창의 기본 크기를 넘어서는 경우 스크롤 생성, 내려서 확인 가능
+	1. user name, user icon 선택시 변수로 저장
+	2. user name은 input box에서 직접 입력, user icon은 dropdown toggle bar 로 선택
+	3. `GO!` 버튼 클릭 시, user name과 user icon값을 저장한 채로 채팅 페이지로 이동
 
-- **::Todo::**
+
+
+- **chat.html**  
+
+	1. 새로운 유저 입장 시, user name, user icon과 함께 입장했다는 메세지 표시
+	2. 오른쪽 `Current Users` 칸에 접속한 모든 유저의 user name 표시
+	3. 대화 시 input box에 메세지 입력 후 `Send 버튼 클릭` or `Enter 키 입력` 시 메세지 전송
+	4. 메세지가 많아져서 채팅창의 기본 크기를 넘어서는 경우 스크롤 생성, 내려서 확인 가능
+
+
+
+- **::Todo List::**
 	- 첫 페이지에서  `GO!` 버튼 위치, 디자인 개선
 	- 채팅창 스크롤 생성시 자동으로 항상 맨 밑부분을 보여주도록 개선
 	- 현재는 유저 입장 시 아이콘이 뜨지 않고 아이콘의 파일명만 뜨지만, 이미지가 뜰 수 있도록 개선
