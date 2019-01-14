@@ -61,12 +61,16 @@
     #messages {
       padding: 10px;
     }
+	.icon {
+		width : 20px;
+	}
   </style>
 
 <body>
   <script type="text/javascript" charset='utf-8'>
     $(document).ready(function() {
       var sock = io.connect('http://127.0.0.1:5000');
+
       sock.on('connect', function() {
         var connect_string = 'new_connect';
         sock.send(connect_string);
@@ -74,10 +78,9 @@
 
       sock.on('message', function(msg) {
         if (msg.type === 'normal') {
-          $('#messages').append(msg.message + '<br>');
+          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + msg.profilecon + ">" + msg.message + '<br>');
         } else {
-          // $('#messages').append("<img src='{{url_for('static', filename='" + {{icon}}  + "')}}'>" + msg.message + '<br>');
-          $('#messages').append('{{icon}}' + msg.message + '<br>');
+          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + msg.profilecon + ">" + msg.message+'<br>');
         }
         console.log('Received Message : ' + msg.type);
       });
@@ -102,7 +105,6 @@
         $('#myMessage').val('');
       });
     });
-
     window.scrollTo(0, document.querySelector(".chat_container").scrollHeight);
   </script>
 
