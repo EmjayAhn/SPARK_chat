@@ -16,13 +16,12 @@
         height: 100%;
         list-style-type: none;
     }
-
     /* div{
           border-color: #92a8d1;
     } */
     .container{
-        /* margin: 2px auto; */
         border: 1px solid black;
+        padding: 10px;
     }
     #header_chat{
         height: 90%;
@@ -32,7 +31,6 @@
     #bottom_container{
         height: 10%;
     }
-
     header {
       background-color: #666;
       padding: 10px;
@@ -51,20 +49,19 @@
     overflow: auto;
     }
 
+    #side_container {
+    float: right;
+    width: 20%;
+    height: 90%;
+    background: #2c3e50;
+    color: #f5f5f5;
+    overflow: hidden;
+    position: relative;
+    }
 
-
-  #side_container {
-  float: right;
-  width: 20%;
-  height: 90%;
-  background: #2c3e50;
-  color: #f5f5f5;
-  overflow: hidden;
-  position: relative;
-}
-
-
-
+    #messages {
+      padding: 10px;
+    }
   </style>
 
 <body>
@@ -76,25 +73,29 @@
         sock.send(connect_string);
       });
 
-      sock.on('hello', function(msg) {
-        $('#messages').append('<li>' + '>>Hello :' + msg + '</li>');
-        console.log('Received Hello Message');
-      });
-
       sock.on('message', function(msg) {
-        // console.log(type(msg));
         if (msg.type === 'normal') {
-          $('#messages').append('>> ' + msg.message + '<br>');
+          $('#messages').append(msg.message + '<br>');
         } else {
-          $('#messages').append('<li>' + msg.message + '</li>');
+          // $('#messages').append("<img src='{{url_for('static', filename='" + {{icon}}  + "')}}'>" + msg.message + '<br>');
+          $('#messages').append('{{icon}}' + msg.message + '<br>');
         }
         console.log('Received Message : ' + msg.type);
+      });
+
+
+      sock.on('message', function(msg) {
+        if (msg.type === 'connect') {
+          var new_user = msg.message.slice(1, -12);
+          $('#current_users').append('<li>' + new_user + '</li>');
+        }
       });
 
       $("#myMessage").keyup(function(event) {
         if (event.keyCode === 13) {
           $("#sendbutton").click();
-      }
+        }
+
       });
 
       $('#sendbutton').on('click', function() {
@@ -120,8 +121,9 @@
     </div>
 
     <div class="container" id="side_container">
-        current users
-      </div>
+        <h6>Current Users</h6>
+        <span id="current_users"></span>
+    </div>
   </div>
 
   </div>
@@ -133,5 +135,4 @@
   </div>
 
 </body>
-
 </html>

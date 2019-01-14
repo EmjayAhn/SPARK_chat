@@ -16,7 +16,8 @@ def form():
     global glon
     if request.method == 'POST':
         glon = request.form['glon']
-        return render_template('chat.html', glon=glon)
+        icon = request.form['icon']
+        return render_template('chat.html', glon=glon, icon=icon)
 
 @app.route("/chat")
 def chat():
@@ -31,7 +32,7 @@ def msg_send(message):
         to_client['message'] = '[{}]님이 입장하였습니다.'.format(glon)
         to_client['type'] = 'connect'
     else:
-        to_client['message'] = glon + " : " + message
+        to_client['message'] = glon + ' : ' + message
         to_client['type'] = 'normal'
     send(to_client, broadcast=True)
 
