@@ -51,6 +51,23 @@
       console.log(user_icon);
       document.getElementById("icon").value = user_icon;
     });
+
+		$(document).ready(function(){
+			$("#submit").click(function(){
+				if($("#id-box").val().length==0){
+					alert("아이디를 입력해주세요!!");
+					$('#id-box').focus();
+					return false;
+				}
+				if($("#icon").val().length==0){
+					alert("프로필콘을 골라주세요!!");
+					$('#icon').focus();
+					return false;
+				}
+			});
+
+
+		})
   </script>
 
 	<div class="top">
@@ -67,7 +84,7 @@
 			<form action="{{url_for('form')}}" method="post">
 				<input class="form-control" id="id-box" placeholder="enter username" name="username">
         		<input type="hidden" id="icon" name="profilecon">
-				<button type="submit"> GO! </button>
+				<button type="submit" id="submit"> GO! </button>
 			</form>
 			<div class="collapse" id="collapseExample">
 				<div class="card card-body">
