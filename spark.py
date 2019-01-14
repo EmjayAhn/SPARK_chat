@@ -12,7 +12,7 @@ def home():
 
 
 @app.route('/chat', methods=['GET', 'POST'])
-def chat():
+def form():
     global username, profilecon
     if request.method == 'POST':
         username = request.form['username']
