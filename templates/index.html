@@ -51,6 +51,23 @@
 			console.log(username);
 			console.log(profilecon);
     });
+
+		$(document).ready(function(){
+			$("#submit").click(function(){
+				if($("#id-box").val().length==0){
+					alert("아이디를 입력해주세요!!");
+					$('#id-box').focus();
+					return false;
+				}
+				if($("#icon").val().length==0){
+					alert("프로필콘을 골라주세요!!");
+					$('#icon').focus();
+					return false;
+				}
+			});
+
+
+		})
   </script>
 
 	<div class="top">
