@@ -103,8 +103,13 @@
         sock.send($('#myMessage').val());
         $('#myMessage').val('');
       });
+
+
+      setInterval(function(){
+        var elem = document.getElementById('chat_container');
+        elem.scrollTop = elem.scrollHeight; }, 50)
+
     });
-    window.scrollTo(0, document.querySelector(".chat_container").scrollHeight);
   </script>
 
   <div class="container" id="header_chat">
@@ -116,7 +121,7 @@
     </nav>
 
 
-    <div class="container" id="chat_container" onclick="ScrollToBottom()">
+    <div class="container" id="chat_container">
       <ul id="messages"></ul>
     </div>
 
