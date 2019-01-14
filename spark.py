@@ -31,7 +31,7 @@ def msg_send(message):
         to_client['message'] = '[{}]님이 입장하였습니다.'.format(glon)
         to_client['type'] = 'connect'
     else:
-        to_client['message'] = message
+        to_client['message'] = glon + " : " + message
         to_client['type'] = 'normal'
     send(to_client, broadcast=True)
 

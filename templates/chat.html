@@ -14,6 +14,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        list-style-type: none;
     }
 
     /* div{
@@ -46,6 +47,8 @@
     float:left;
     position:relative;
     width: 80%;
+    display:inline-block;
+    overflow: auto;
     }
 
 
@@ -88,12 +91,19 @@
         console.log('Received Message : ' + msg.type);
       });
 
+      $("#myMessage").keyup(function(event) {
+        if (event.keyCode === 13) {
+          $("#sendbutton").click();
+      }
+      });
+
       $('#sendbutton').on('click', function() {
         sock.send($('#myMessage').val());
         $('#myMessage').val('');
       });
     });
 
+    window.scrollTo(0, document.querySelector(".chat_container").scrollHeight);
   </script>
 
   <div class="container" id="header_chat">
@@ -105,9 +115,10 @@
     </nav>
 
 
-    <div class="container" id="chat_container">
+    <div class="container" id="chat_container" onclick="ScrollToBottom()">
       <ul id="messages"></ul>
     </div>
+
     <div class="container" id="side_container">
         current users
       </div>
