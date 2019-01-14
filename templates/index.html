@@ -3,9 +3,15 @@
 
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<<<<<<< HEAD
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<meta charset="utf-8">
 	<title>SPARK</title>
+=======
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <meta charset="utf-8">
+	<title>SPARK Chat</title>
+>>>>>>> 7aac57775de8737a51b22935061bd829526c3c23
 	<style media="screen">
 		body, html {
 			background-repeat: no-repeat;
@@ -121,25 +127,26 @@
 
 <body>
 
-	<script type="text/javascript">
-		$('#icons').live('click', function() {
-			var user_id = document.getElementById('id-box').value;
-			var user_icon = $(this).attr("class") + '.png';
-			console.log(user_id);
-			console.log(user_icon);
-			document.getElementById("icon").value = user_icon;
-		});
+  <script type="text/javascript">
+    $('#icons').live('click', function() {
+      var username, profilecon
+			username = document.getElementById('username').value;
+			profilecon = $(this).attr("class") + '.png';
+      document.getElementById("profilecon").value = profilecon;
+			console.log(username);
+			console.log(profilecon);
+    });
 
-		$(document).ready(function() {
-			$("#submit").click(function() {
-				if ($("#id-box").val().length == 0) {
+		$(document).ready(function(){
+			$("#submit").click(function(){
+				if($("#username").val().length==0){
 					alert("아이디를 입력해주세요!!");
-					$('#id-box').focus();
+					$('#username').focus();
 					return false;
 				}
-				if ($("#icon").val().length == 0) {
+				if ($("#profilecon").val().length == 0) {
 					alert("프로필콘을 골라주세요!!");
-					$('#icon').focus();
+					$('#profilecon').focus();
 					return false;
 				}
 			});
@@ -175,26 +182,27 @@
 			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="showDiv()"></button>
 
 			<form action="{{url_for('form')}}" method="post">
-				<input class="form-control" id="id-box" placeholder="enter username" name="username">
-				<input type="hidden" id="icon" name="profilecon">
+
+				<input class="form-control" id="username" placeholder="enter username" name="username">
+        		<input type="hidden" id="profilecon" name="profilecon">
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<table>
-							<tr>
-								<td><img id='icons' class='a' src="{{url_for('static', filename='a.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='b' src="{{url_for('static', filename='b.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='c' src="{{url_for('static', filename='c.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='d' src="{{url_for('static', filename='d.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='e' src="{{url_for('static', filename='e.png')}}" width=80 height=80></td>
-							</tr>
-							<tr>
-								<td><img id='icons' class='f' src="{{url_for('static', filename='f.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='g' src="{{url_for('static', filename='g.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='h' src="{{url_for('static', filename='h.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='i' src="{{url_for('static', filename='i.png')}}" width=80 height=80></td>
-								<td><img id='icons' class='j' src="{{url_for('static', filename='j.png')}}" width=80 height=80></td>
-							</tr>
-						</table>
+			            <table>
+				            <tr>
+				                <td><img id='icons' class='a' src="{{url_for('static', filename='a.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='b' src="{{url_for('static', filename='b.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='c' src="{{url_for('static', filename='c.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='d' src="{{url_for('static', filename='d.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='e' src="{{url_for('static', filename='e.png')}}" width=80 height=80></td>
+				            </tr>
+				            <tr>
+				                <td><img id='icons' class='f' src="{{url_for('static', filename='f.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='g' src="{{url_for('static', filename='g.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='h' src="{{url_for('static', filename='h.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='i' src="{{url_for('static', filename='i.png')}}" width=80 height=80></td>
+				                <td><img id='icons' class='j' src="{{url_for('static', filename='j.png')}}" width=80 height=80></td>
+				            </tr>
+			          </table>
 					</div>
 				</div>
 				<div id="page" style="display:none;">
