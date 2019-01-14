@@ -89,7 +89,7 @@
       sock.on('message', function(msg) {
         if (msg.type === 'connect') {
           var new_user = msg.message.slice(1, -12);
-          $('#current_users').append('<li>' + new_user + '</li>');
+          $('#current_users').append("<img class=icon src=http://127.0.0.1:5000/static/" + msg.profilecon + ">" + new_user + '<br>');
         }
       });
 
@@ -97,7 +97,6 @@
         if (event.keyCode === 13) {
           $("#sendbutton").click();
         }
-
       });
 
       $('#sendbutton').on('click', function() {
