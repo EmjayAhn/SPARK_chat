@@ -19,6 +19,7 @@ def form():
         profilecon = request.form['profilecon']
         return render_template('chat.html', username=username, profilecon=profilecon)
 
+
 @socket_io.on("message")
 def msg_send(message):
     global username, profilecon

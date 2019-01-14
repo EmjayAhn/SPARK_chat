@@ -54,14 +54,14 @@
 
 		$(document).ready(function(){
 			$("#submit").click(function(){
-				if($("#id-box").val().length==0){
+				if($("#username").val().length==0){
 					alert("아이디를 입력해주세요!!");
-					$('#id-box').focus();
+					$('#username').focus();
 					return false;
 				}
-				if($("#icon").val().length==0){
+				if($("#profilecon").val().length==0){
 					alert("프로필콘을 골라주세요!!");
-					$('#icon').focus();
+					$('#profilecon').focus();
 					return false;
 				}
 			});
@@ -84,7 +84,7 @@
 			<form action="{{url_for('form')}}" method="post">
 				<input class="form-control" id="username" placeholder="enter username" name="username">
         <input type="hidden" id="profilecon" name="profilecon">
-				<button type="submit"> GO! </button>
+				<button id="submit" type="submit"> GO! </button>
 			</form>
 			<div class="collapse" id="collapseExample">
 				<div class="card card-body">
