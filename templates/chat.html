@@ -1,12 +1,137 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <p>
-      chat.html
-    </p>
-  </body>
+<html lang="ko" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>SPARK</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+
+</head>
+<style>
+  html, body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    /* div{
+          border-color: #92a8d1;
+    } */
+    .container{
+        border: 1px solid black;
+        padding: 10px;
+    }
+    #header_chat{
+        height: 90%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    #bottom_container{
+        height: 10%;
+    }
+    header {
+      background-color: #666;
+      padding: 10px;
+      text-align: left;
+      font-size: 35px;
+      color: white;
+      height: 10%;
+    }
+
+    #chat_container{
+        height: 90%;
+    float:left;
+    position:relative;
+    width: 80%;
+    display:inline-block;
+    overflow: auto;
+    }
+
+    #side_container {
+    float: right;
+    width: 20%;
+    height: 90%;
+    background: #2c3e50;
+    color: #f5f5f5;
+    overflow: hidden;
+    position: relative;
+    }
+
+    #messages {
+      padding: 10px;
+    }
+  </style>
+
+<body>
+  <script type="text/javascript" charset='utf-8'>
+    $(document).ready(function() {
+      var sock = io.connect('http://127.0.0.1:5000');
+      sock.on('connect', function() {
+        var connect_string = 'new_connect';
+        sock.send(connect_string);
+      });
+
+      sock.on('message', function(msg) {
+        if (msg.type === 'normal') {
+          $('#messages').append(msg.message + '<br>');
+        } else {
+          // $('#messages').append("<img src='{{url_for('static', filename='" + {{icon}}  + "')}}'>" + msg.message + '<br>');
+          $('#messages').append('{{icon}}' + msg.message + '<br>');
+        }
+        console.log('Received Message : ' + msg.type);
+      });
+
+
+      sock.on('message', function(msg) {
+        if (msg.type === 'connect') {
+          var new_user = msg.message.slice(1, -12);
+          $('#current_users').append('<li>' + new_user + '</li>');
+        }
+      });
+
+      $("#myMessage").keyup(function(event) {
+        if (event.keyCode === 13) {
+          $("#sendbutton").click();
+        }
+
+      });
+
+      $('#sendbutton').on('click', function() {
+        sock.send($('#myMessage').val());
+        $('#myMessage').val('');
+      });
+    });
+
+    window.scrollTo(0, document.querySelector(".chat_container").scrollHeight);
+  </script>
+
+  <div class="container" id="header_chat">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        SPARK
+      </a>
+    </nav>
+
+
+    <div class="container" id="chat_container" onclick="ScrollToBottom()">
+      <ul id="messages"></ul>
+    </div>
+
+    <div class="container" id="side_container">
+        <h6>Current Users</h6>
+        <span id="current_users"></span>
+    </div>
+  </div>
+
+  </div>
+  <div class="container input-group mb-3" id="inputbox">
+    <input id='myMessage' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="sendbutton">Button</button>
+    </div>
+  </div>
+
+</body>
 </html>
