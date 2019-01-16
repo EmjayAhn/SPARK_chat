@@ -68,28 +68,39 @@
 
 <body>
   <script type="text/javascript" charset='utf-8'>
+
     $(document).ready(function() {
       var sock = io.connect('http://127.0.0.1:5000');
-
       sock.on('connect', function() {
         var connect_string = 'new_connect';
         sock.send(connect_string);
+        var data = document.location.href.split("?")[1];
+        var username = data.split("&")[0].split("=")[1];
+        var profilecon = data.split("&")[1].split("=")[1];
+        console.log(username);
+        console.log(profilecon);
       });
 
-      sock.on('message', function(users) {
-        if (users.type === 'normal') {
-          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + users.profilecon + ">" + users.message + '<br>');
+      sock.on('message', function(data) {
+        if (data.messages.type === 'normal') {
+          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '<br>');
         } else {
-          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + users.profilecon + ">" + users.message + '<br>');
+          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '<br>');
         }
-        console.log('Received Message : ' + users.type);
+        console.log('Received Message : ' + data.messages.type);
+        console.log(data);
       });
 
 
-      sock.on('message', function(msg) {
-        if (msg.type === 'connect') {
-          var new_user = msg.message.slice(1, -12);
-          $('#current_users').append("<img class=icon src=http://127.0.0.1:5000/static/" + msg.profilecon + ">" + '[' + new_user + ']' + '<br>');
+      sock.on('message', function(data) {
+        if (data.messages.type === 'connect') {
+          // for (var user in data.current_users) {
+          //   var profilecon = user.con
+          //   var username = name
+          //   console.log(profilecon, username);
+          // }
+          var username = data.messages.message.slice(1, -12);
+          $('#current_users').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + '[' + username + ']' + '<br>');
         }
       });
 
@@ -105,8 +116,15 @@
       });
 
       setInterval(function() {
-        var elem = document.getElementById('chat_container');
-        elem.scrollTop = elem.scrollHeight; }, 100)
+        var chat_scroll = document.getElementById('chat_container');
+        // var current_users_data = document.getElementById('side_container');
+        chat_scroll.scrollTop = chat_scroll.scrollHeight; }, 100)
+        // current_users쪽 스크롤도 생성 but 독립적으로 생성불가
+        // var side_scroll = document.getElementById('side_container');
+        // side_scroll.scrollTop = side_scroll.scrollHeight;
+        // current_users_data.value = "111"
+
+
     });
   </script>
 
@@ -131,7 +149,7 @@
 
   </div>
   <div class="container input-group mb-3" id="inputbox">
-    <input id='myMessage' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <input id='myMessage' type="text" class="form-control" placeholder="Enter the Message" aria-label="Recipient's username" aria-describedby="button-addon2">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button" id="sendbutton">Send</button>
     </div>

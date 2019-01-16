@@ -30,18 +30,97 @@
 			float: left;
 			width: 80%;
 		}
+
 		#emoji_button{
 			float: right;
 			width: 20%;
 			border-color: black;
 		}
+
 		td {
 			margin: 10 10;
 		}
+
+		#icons:hover {
+		  -ms-transform: scale(1.5); /* IE 9 */
+		  -webkit-transform: scale(1.5); /* Safari 3-8 */
+		  transform: scale(1.2);
+		  cursor: -webkit-grab;
+		}
+
+		#page {
+			display: flex;
+			justify-content: center;
+		}
+
+		.color-bg-start {
+			background-color: salmon;
+		}
+
+		.bg-animate-color {
+			animation: random-bg .5s linear infinite;
+		}
+
+		@keyframes random-bg {
+			from {
+				filter: hue-rotate(0);
+			}
+			to {
+				filter: hue-rotate(360deg);
+			}
+		}
+		.fun-btn {
+			/* change bg color to get different hues    */
+			background-color: salmon;
+			color: white;
+			padding: 2em 3em;
+			border: none;
+			transition: all .3s ease;
+			border-radius: 5px;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			outline: none;
+			align-self: center;
+			cursor: pointer;
+			font-weight: bold;
+		}
+
+		.fun-btn:hover {
+			animation: random-bg .5s linear infinite, grow 1300ms ease infinite;
+		}
+
+		.start-fun {
+			background-color: #fff !important;
+			/* change color of button text when fun is started   */
+			color: salmon !important;
+		}
+
+		/* pulsating effect on button */
+		@keyframes grow {
+			0% {
+			transform: scale(1);
+			}
+			14% {
+			transform: scale(1.3);
+			}
+			28% {
+			transform: scale(1);
+			}
+			42% {
+			transform: scale(1.3);
+			}
+			70% {
+			transform: scale(1);
+			}
+		}
+
+
+
 	</style>
 </head>
 
 <body>
+
   <script type="text/javascript">
     $('#icons').live('click', function() {
       var username, profilecon
@@ -65,10 +144,24 @@
 					return false;
 				}
 			});
+		});
 
+		$('.fun-btn').on('click', function(event) {
+			$(this).toggleClass('start-fun');
+			var $page = $('#page');
+			$page.toggleClass('color-bg-start')
+				.toggleClass('bg-animate-color');
 
-		})
-  </script>
+			//change text when when button is clicked
+			$(this).hasClass('start-fun') ?
+				$(this).text('stop the fun') :
+				$(this).text('start the fun');
+		});
+
+		function showDiv() {
+			document.getElementById('page').style.display = "block";
+		}
+	</script>
 
 	<div class="top">
 	</div>
@@ -79,33 +172,36 @@
 			<div class="logo_box">
 				<img src="{{url_for('static', filename='logo.jpg')}}" width=500 height=200>
 			</div>
-			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" ></button>
+			<button class="btn btn-default dropdown-toggle" id="emoji_button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="showDiv()"></button>
 
-			<form action="{{url_for('form')}}" method="post">
+			<form action="{{url_for('form')}}" method="GET">
 				<input class="form-control" id="username" placeholder="enter username" name="username">
         <input type="hidden" id="profilecon" name="profilecon">
-				<button id="submit" type="submit"> GO! </button>
-			</form>
-			<div class="collapse" id="collapseExample">
-				<div class="card card-body">
-          <table>
-            <tr>
+				<div class="collapse" id="collapseExample">
+					<div class="card card-body">
+            <table>
+	            <tr>
                 <td><img id='icons' class='a' src="{{url_for('static', filename='a.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='b' src="{{url_for('static', filename='b.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='c' src="{{url_for('static', filename='c.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='d' src="{{url_for('static', filename='d.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='e' src="{{url_for('static', filename='e.png')}}" width=80 height=80></td>
-            </tr>
-            <tr>
+	            </tr>
+	            <tr>
                 <td><img id='icons' class='f' src="{{url_for('static', filename='f.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='g' src="{{url_for('static', filename='g.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='h' src="{{url_for('static', filename='h.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='i' src="{{url_for('static', filename='i.png')}}" width=80 height=80></td>
                 <td><img id='icons' class='j' src="{{url_for('static', filename='j.png')}}" width=80 height=80></td>
-            </tr>
-          </table>
+	            </tr>
+          	</table>
+					</div>
 				</div>
-			</div>
+				<div id="page" style="display:none;">
+					<button type="submit" class='fun-btn' id='submit'> GO! </button>
+				</div>
+			</form>
+
 		</div>
 	</div>
 
@@ -114,4 +210,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>
