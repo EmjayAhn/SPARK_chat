@@ -104,10 +104,10 @@
 				console.log(username);
 				console.log(profilecon);
 			});
-=======
+
   <script type="text/javascript" charset='utf-8'>
     $(document).ready(function() {
-      var sock = io.connect('http://127.0.0.1:5000');
+      var sock = io.connect();
       sock.on('connect', function() {
         var connect_string = 'new_connect';
         sock.send(connect_string);
@@ -117,7 +117,6 @@
         console.log(username);
         console.log(profilecon);
       });
->>>>>>> 61e964a4707cf9ad3b832a24c8b3ddd6b1066e21
 
       sock.on('message', function(data) {
         if (data.messages.type === 'normal') {
