@@ -70,7 +70,7 @@
   <script type="text/javascript" charset='utf-8'>
 
     $(document).ready(function() {
-      var sock = io.connect('http://127.0.0.1:5000');
+      var sock = io.connect();
       sock.on('connect', function() {
         var connect_string = 'new_connect';
         sock.send(connect_string);
