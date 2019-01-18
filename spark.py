@@ -28,8 +28,9 @@ def msg_send(message):
         data["user_no"] = len(data["current_users"])
         mysession = path.split("&")[2].split("=")[1]
         data["sessions"][mysession] = {"name": username, "con": profilecon}
-        data['current_users'][username] = {"name": username, "con": profilecon}
-        data['messages']['message'] = '[{}]님이 입장하였습니다.'.format(username)
+        data['current_users'][username] = {"name": username, "con": profilecon, "mysession": mysession}
+        data['messages']['user'] = username
+        data['messages']['message'] = ' {} 님이 입장하였습니다.'.format(username)
         data['messages']['profilecon'] = profilecon
         data['messages']['type'] = 'connect'
         # data['messages']["path"] = path
@@ -37,7 +38,8 @@ def msg_send(message):
         mysession = path.split("&")[2].split("=")[1]
         myname = data['sessions'][mysession]["name"]
         mycon = data['sessions'][mysession]["con"]
-        data['messages']['message'] = '[' + myname + ']' + ' : ' + message
+        data['messages']['user'] = myname
+        data['messages']['message'] = message
         data['messages']['profilecon'] = mycon
         data['messages']['type'] = 'normal'
     send(data, broadcast=True)
