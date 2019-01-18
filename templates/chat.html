@@ -2,15 +2,15 @@
 <html lang="ko" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title>SPARK</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js" charset="utf-8"></script>
+	<meta charset="utf-8">
+	<title>SPARK</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js" charset="utf-8"></script>
 
 </head>
 <style>
-  html, body{
+	html, body{
         margin: 0;
         padding: 0;
         height: 100%;
@@ -67,93 +67,97 @@
   </style>
 
 <body>
-  <script type="text/javascript" charset='utf-8'>
+	<script type="text/javascript" charset='utf-8'>
+		$(document).ready(function() {
+			var sock = io.connect('http://127.0.0.1:5000');
+			sock.on('connect', function() {
+				var connect_string = 'new_connect';
+				sock.send(connect_string);
+				var data = document.location.href.split("?")[1];
+				var username = data.split("&")[0].split("=")[1];
+				var profilecon = data.split("&")[1].split("=")[1];
+				console.log(username);
+				console.log(profilecon);
+			});
 
-    $(document).ready(function() {
-      var sock = io.connect();
-      sock.on('connect', function() {
-        var connect_string = 'new_connect';
-        sock.send(connect_string);
-        var data = document.location.href.split("?")[1];
-        var username = data.split("&")[0].split("=")[1];
-        var profilecon = data.split("&")[1].split("=")[1];
-        console.log(username);
-        console.log(profilecon);
-      });
+			sock.on('message', function(data) {
+				if (data.messages.type === 'normal') {
+					$('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '<br>');
+				} else {
+					$('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '<br>');
+				}
+				console.log('Received Message : ' + data.messages.type);
+				console.log(data);
+			});
+			sock.on('message', function(data) {
+				if (data.messages.type === 'connect') {
+					var username = data.messages.message.slice(1, -12);
+					$('#current_users').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + '[' + username + ']' + '<br>');
+				}
+			});
 
-      sock.on('message', function(data) {
-        if (data.messages.type === 'normal') {
-          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '<br>');
-        } else {
-          $('#messages').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '<br>');
-        }
-        console.log('Received Message : ' + data.messages.type);
-        console.log(data);
-      });
+			$("#myMessage").keyup(function(event) {
+				if (event.keyCode === 13) {
+					message = $('#myMessage').val();
+					if (message.length !== 0) {
+						$("#sendbutton").click();
+					}
+				}
+			});
 
+			$('#sendbutton').on('click', function() {
+				message = $('#myMessage').val();
+				sock.send(escape(message));
+				// 한글을 치고 엔터로 메세지를 전송하면 빈 메세지가
+				// 소켓으로 전송되서 위에 keyup에서
+				// 메세지 value가 비어있지 않을때만
+				// enter==sendbutton click 하는 액션으로 지정
+				// if (message.trim().length === 0){
+				// 	sock.send("empty because of enter");
+				// }
+				// else{
+				// 	sock.send(escape(message));
+				// }
+				$('#myMessage').val('');
+			});
+			setInterval(function() {
+				var chat_scroll = document.getElementById('chat_container');
+				// var current_users_data = document.getElementById('side_container');
+				chat_scroll.scrollTop = chat_scroll.scrollHeight;
+			}, 100)
+			// current_users쪽 스크롤도 생성 but 독립적으로 생성불가
+			// var side_scroll = document.getElementById('side_container');
+			// side_scroll.scrollTop = side_scroll.scrollHeight;
+			// current_users_data.value = "111"
+		});
+	</script>
 
-      sock.on('message', function(data) {
-        if (data.messages.type === 'connect') {
-          // for (var user in data.current_users) {
-          //   var profilecon = user.con
-          //   var username = name
-          //   console.log(profilecon, username);
-          // }
-          var username = data.messages.message.slice(1, -12);
-          $('#current_users').append("<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + '[' + username + ']' + '<br>');
-        }
-      });
+	<div class="container" id="header_chat">
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="#">
+				<img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+				SPARK
+			</a>
+		</nav>
 
-      $("#myMessage").keyup(function(event) {
-        if (event.keyCode === 13) {
-          $("#sendbutton").click();
-        }
-      });
+		<div class="container" id="chat_container">
+			<ul id="messages"></ul>
+		</div>
 
-      $('#sendbutton').on('click', function() {
-        sock.send($('#myMessage').val());
-        $('#myMessage').val('');
-      });
+		<div class="container" id="side_container">
+			<h6>Current Users</h6>
+			<span id="current_users"></span>
+		</div>
+	</div>
 
-      setInterval(function() {
-        var chat_scroll = document.getElementById('chat_container');
-        // var current_users_data = document.getElementById('side_container');
-        chat_scroll.scrollTop = chat_scroll.scrollHeight; }, 100)
-        // current_users쪽 스크롤도 생성 but 독립적으로 생성불가
-        // var side_scroll = document.getElementById('side_container');
-        // side_scroll.scrollTop = side_scroll.scrollHeight;
-        // current_users_data.value = "111"
-
-
-    });
-  </script>
-
-  <div class="container" id="header_chat">
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-        SPARK
-      </a>
-    </nav>
-
-
-    <div class="container" id="chat_container">
-      <ul id="messages"></ul>
-    </div>
-
-    <div class="container" id="side_container">
-        <h6>Current Users</h6>
-        <span id="current_users"></span>
-    </div>
-  </div>
-
-  </div>
-  <div class="container input-group mb-3" id="inputbox">
-    <input id='myMessage' type="text" class="form-control" placeholder="Enter the Message" aria-label="Recipient's username" aria-describedby="button-addon2">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" id="sendbutton">Send</button>
-    </div>
-  </div>
+	</div>
+	<div class="container input-group mb-3" id="inputbox">
+		<input charset="UTF-8" id='myMessage' type="text" class="form-control" placeholder="Enter the Message" aria-label="Recipient's username" aria-describedby="button-addon2">
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" type="button" id="sendbutton">Send</button>
+		</div>
+	</div>
 
 </body>
+
 </html>
