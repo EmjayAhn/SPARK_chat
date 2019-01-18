@@ -110,12 +110,12 @@
           var myname = document.location.href.split("?")[1].split("&")[0].split("=")[1];
 					console.log(talker, myname);
           if (talker == myname) {
-            $('#messages').append("<span id=mymessage>" + data.messages.message + "   " + "<img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + '</span><br>');
+            $('#messages').append("<span id=mymessage>" + data.messages.message + "   " + "<img class=icon src=./static/" + data.messages.profilecon + ">" + '</span><br>');
           } else {
-            $('#messages').append("<span><img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + "  " + data.messages.user + "  : " + data.messages.message + '</span><br>');
+            $('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + "  " + data.messages.user + "  : " + data.messages.message + '</span><br>');
           }
         } else {
-          $('#messages').append("<span><img class=icon src=http://127.0.0.1:5000/static/" + data.messages.profilecon + ">" + data.messages.message + '</span><br>');
+          $('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + data.messages.message + '</span><br>');
         }
         console.log('Received Message : ' + data.messages.type);
         console.log(data);
@@ -128,7 +128,7 @@
           for (var user in data_list.current_users) {
             var profilecon = data_list["current_users"][user]["con"]
             var username = data_list["current_users"][user]["name"]
-            $('#current_users').append("<img class=icon src=http://127.0.0.1:5000/static/" + profilecon + ">" + '  ' + username + '  ' + '<br>');
+            $('#current_users').append("<img class=icon src=./static/" + profilecon + ">" + '  ' + username + '  ' + '<br>');
           }
         }
       });
@@ -155,7 +155,7 @@
   </script>
 
   <div class="container" id="header_chat">
-    <img src=http://127.0.0.1:5000/static/logo_long.jpg width=300 height=80>
+    <img src=./static/logo_long.jpg width=300 height=80>
 
     <div class="container" id="chat_container">
       <ul id="messages"></ul>
