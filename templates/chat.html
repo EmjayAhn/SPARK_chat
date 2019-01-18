@@ -105,9 +105,10 @@
 			});
 
       sock.on('message', function(data) {
+				var myname_uri = document.location.href.split("?")[1].split("&")[0].split("=")[1];
+				var myname = decodeURIComponent(myname_uri);
         if (data.messages.type === 'normal') {
           var talker = data.messages.user;
-          var myname = document.location.href.split("?")[1].split("&")[0].split("=")[1];
 					console.log(talker, myname);
           if (talker == myname) {
             $('#messages').append("<span id=mymessage>" + data.messages.message + "   " + "<img class=icon src=./static/" + data.messages.profilecon + ">" + '</span><br>');
@@ -115,8 +116,14 @@
             $('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + "  " + data.messages.user + "  : " + data.messages.message + '</span><br>');
           }
         } else {
-          $('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + data.messages.message + '</span><br>');
-        }
+					var new_user = data.messages.user;
+					console.log(new_user, myname);
+					if (new_user == myname) {
+          	$('#messages').append("<span>" + "채팅방에 입장하였습니다." + '</span><br>');
+					} else {
+						$('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + data.messages.message + '</span><br>');
+					}
+				}
         console.log('Received Message : ' + data.messages.type);
         console.log(data);
       });
@@ -143,6 +150,10 @@
 			});
 
       $('#sendbutton').on('click', function() {
+				message = $('#myMessage').val();
+				if (message.length == 0) {
+					return;
+				}
 				message = $('#myMessage').val();
 				sock.send(escape(message));
 				$('#myMessage').val('');
