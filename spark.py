@@ -3,6 +3,7 @@ from flask import render_template, url_for, request, redirect
 from flask_socketio import SocketIO, send, leave_room
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecret'
 socket_io = SocketIO(app)
 data = {"sessions": {}, "current_users": {}, "messages": {}}
 
@@ -58,5 +59,4 @@ def msg_send(message, charset="UTF-8"):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
     socket_io.run(app, debug=True)
