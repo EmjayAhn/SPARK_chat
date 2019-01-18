@@ -21,7 +21,7 @@ def form():
 
 
 @socket_io.on("message")
-def msg_send(message):
+def msg_send(message, charset="UTF-8"):
     global username, profilecon, data
     path = request.full_path.split("?")[1]
     if message == 'new_connect':
@@ -37,18 +37,22 @@ def msg_send(message):
         mysession = path.split("&")[2].split("=")[1]
         myname = data['sessions'][mysession]["name"]
         mycon = data['sessions'][mysession]["con"]
+		# 띄어쓰기 가 %20로 인코딩되서 send되서 바꿔주
+        message = message.replace("%20", " ")
+        message = message.replace("%", "\\")
+        message = message.encode('utf-8').decode('unicode_escape')
+
         data['messages']['message'] = '[' + myname + ']' + ' : ' + message
         data['messages']['profilecon'] = mycon
         data['messages']['type'] = 'normal'
     send(data, broadcast=True)
-
 
 # @socket_io.on("leave")
 # def on_leave(data):
 #     username = data['username']
 #     room = data['room']
 #     leave_room(room)
-#     send(username + ' has left the room.', room=room)
+#     send(data, room=room)
 
 
 if __name__ == '__main__':
