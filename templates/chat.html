@@ -91,7 +91,6 @@
   </style>
 
 <body>
-<<<<<<< HEAD
 	<script type="text/javascript" charset='utf-8'>
 		$(document).ready(function() {
 			var sock = io.connect();
@@ -104,19 +103,6 @@
 				console.log(username);
 				console.log(profilecon);
 			});
-
-  <script type="text/javascript" charset='utf-8'>
-    $(document).ready(function() {
-      var sock = io.connect();
-      sock.on('connect', function() {
-        var connect_string = 'new_connect';
-        sock.send(connect_string);
-        var link = document.location.href.split("?")[1];
-        var username = link.split("&")[0].split("=")[1];
-        var profilecon = link.split("&")[1].split("=")[1];
-        console.log(username);
-        console.log(profilecon);
-      });
 
       sock.on('message', function(data) {
         if (data.messages.type === 'normal') {
