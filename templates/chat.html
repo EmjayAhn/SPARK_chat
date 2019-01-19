@@ -95,8 +95,8 @@
 		$(document).ready(function() {
 			var sock = io.connect();
 			sock.on('connect', function() {
-				var connect_string = 'new_connect';
-				sock.send(connect_string);
+				var message = 'new_connect';
+				sock.send(message);
 				var data = document.location.href.split("?")[1];
 				var username = data.split("&")[0].split("=")[1];
 				var profilecon = data.split("&")[1].split("=")[1];
@@ -107,23 +107,21 @@
       sock.on('message', function(data) {
 				var myname_uri = document.location.href.split("?")[1].split("&")[0].split("=")[1];
 				var myname = decodeURIComponent(myname_uri);
-        if (data.messages.type === 'normal') {
-          var talker = data.messages.user;
-					console.log(talker, myname);
+        if (data.chat.type === 'normal') {
+          var talker = data.chat.user;
           if (talker == myname) {
-            $('#messages').append("<span id=mymessage>" + data.messages.message + "   " + "<img class=icon src=./static/" + data.messages.profilecon + ">" + '</span><br>');
+            $('#messages').append("<span id=mymessage>" + data.chat.message + "   " + "<img class=icon src=./static/" + data.chat.profilecon + ">" + '</span><br>');
           } else {
-            $('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + "  " + data.messages.user + "  : " + data.messages.message + '</span><br>');
+            $('#messages').append("<span><img class=icon src=./static/" + data.chat.profilecon + ">" + "  " + data.chat.user + "  : " + data.chat.message + '</span><br>');
           }
         } else {
-					var new_user = data.messages.user;
-					console.log(new_user, myname);
+					var new_user = data.chat.user;
 					if (new_user == myname) {
           	$('#messages').append("<span>" + "채팅방에 입장하였습니다." + '</span><br>');
 					} else {
-						$('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + data.messages.message + '</span><br>');
+						$('#messages').append("<span><img class=icon src=./static/" + data.chat.profilecon + ">" + data.chat.message + '</span><br>');
 					}
-					if (data.messages.type === 'connect') {
+					if (data.chat.type === 'connect') {
 	          $("p").html("");
 	          var data_list = data
 	          for (var user in data_list.current_users) {
@@ -133,7 +131,7 @@
 	          }
 	        }
 				}
-        console.log('Received Message : ' + data.messages.type);
+        console.log('Received Message : ' + data.chat.type);
         console.log(data);
       });
 

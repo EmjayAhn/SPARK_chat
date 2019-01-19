@@ -5,7 +5,7 @@ from flask_socketio import SocketIO, send, leave_room
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 socket_io = SocketIO(app)
-data = {"sessions": {}, "current_users": {}, "messages": {}}
+data = {"sessions": {}, "current_users": {}, "chat": {}}
 
 @app.route("/")
 def home():
@@ -30,24 +30,24 @@ def msg_send(message, charset="UTF-8"):
         mysession = path.split("&")[2].split("=")[1]
         data["sessions"][mysession] = {"name": username, "con": profilecon}
         data['current_users'][username] = {"name": username, "con": profilecon, "mysession": mysession}
-        data['messages']['user'] = username
-        data['messages']['message'] = ' {} 님이 입장하였습니다.'.format(username)
-        data['messages']['profilecon'] = profilecon
-        data['messages']['type'] = 'connect'
-        # data['messages']["path"] = path
+        data['chat']['user'] = username
+        data['chat']['message'] = ' {} 님이 입장하였습니다.'.format(username)
+        data['chat']['profilecon'] = profilecon
+        data['chat']['type'] = 'connect'
+        # data['chat']["path"] = path
     else:
         mysession = path.split("&")[2].split("=")[1]
         myname = data['sessions'][mysession]["name"]
         mycon = data['sessions'][mysession]["con"]
-        data['messages']['user'] = myname
+        data['chat']['user'] = myname
 
         message = message.replace("%20", " ")
         message = message.replace("%", "\\")
         message = message.encode('utf-8').decode('unicode_escape')
-        data['messages']['message'] = message
-        
-        data['messages']['profilecon'] = mycon
-        data['messages']['type'] = 'normal'
+        data['chat']['message'] = message
+
+        data['chat']['profilecon'] = mycon
+        data['chat']['type'] = 'normal'
     send(data, broadcast=True)
 
 # @socket_io.on("leave")
