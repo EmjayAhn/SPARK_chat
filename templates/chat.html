@@ -123,21 +123,18 @@
 					} else {
 						$('#messages').append("<span><img class=icon src=./static/" + data.messages.profilecon + ">" + data.messages.message + '</span><br>');
 					}
+					if (data.messages.type === 'connect') {
+	          $("p").html("");
+	          var data_list = data
+	          for (var user in data_list.current_users) {
+	            var profilecon = data_list["current_users"][user]["con"]
+	            var username = data_list["current_users"][user]["name"]
+	            $('#current_users').append("<img class=icon src=./static/" + profilecon + ">" + '  ' + username + '  ' + '<br>');
+	          }
+	        }
 				}
         console.log('Received Message : ' + data.messages.type);
         console.log(data);
-      });
-
-      sock.on('message', function(data) {
-        if (data.messages.type === 'connect') {
-          $("p").html("");
-          var data_list = data
-          for (var user in data_list.current_users) {
-            var profilecon = data_list["current_users"][user]["con"]
-            var username = data_list["current_users"][user]["name"]
-            $('#current_users').append("<img class=icon src=./static/" + profilecon + ">" + '  ' + username + '  ' + '<br>');
-          }
-        }
       });
 
       $("#myMessage").keyup(function(event) {
