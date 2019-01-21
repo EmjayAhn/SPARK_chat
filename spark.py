@@ -26,26 +26,24 @@ def msg_send(message, charset="UTF-8"):
     global username, profilecon, data
     path = request.full_path.split("?")[1]
     if message == 'new_connect':
+        sessionid = request.sid
         data["user_no"] = len(data["current_users"])
-        mysession = path.split("&")[2].split("=")[1]
-        data["sessions"][mysession] = {"name": username, "con": profilecon}
-        data['current_users'][username] = {"name": username, "con": profilecon, "mysession": mysession}
+        data["sessions"][sessionid] = {"name": username, "con": profilecon}
+        data['current_users'][username] = {"name": username, "con": profilecon, "sessionid": sessionid}
         data['chat']['user'] = username
         data['chat']['message'] = ' {} 님이 입장하였습니다.'.format(username)
         data['chat']['profilecon'] = profilecon
         data['chat']['type'] = 'connect'
-        # data['chat']["path"] = path
+        data['chat']["sid"] = sessionid
     else:
-        mysession = path.split("&")[2].split("=")[1]
-        myname = data['sessions'][mysession]["name"]
-        mycon = data['sessions'][mysession]["con"]
-        data['chat']['user'] = myname
-
+        sessionid = request.sid
         message = message.replace("%20", " ")
         message = message.replace("%", "\\")
         message = message.encode('utf-8').decode('unicode_escape')
+        myname = data['sessions'][sessionid]["name"]
+        mycon = data['sessions'][sessionid]["con"]
+        data['chat']['user'] = myname
         data['chat']['message'] = message
-
         data['chat']['profilecon'] = mycon
         data['chat']['type'] = 'normal'
     send(data, broadcast=True)

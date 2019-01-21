@@ -62,12 +62,16 @@
       background: #FFF8DC;
     }
 
+		#current_users {
+			padding: 0;
+		}
+
     #side_container {
       float: right;
       width: 20%;
       height: 90%;
       background: #DEB887;
-      color: #696969;
+      color: #800000;
       overflow: hidden;
       position: relative;
     }
@@ -96,10 +100,10 @@
 			var sock = io.connect();
 			sock.on('connect', function() {
 				var message = 'new_connect';
-				sock.send(message);
 				var data = document.location.href.split("?")[1];
 				var username = data.split("&")[0].split("=")[1];
 				var profilecon = data.split("&")[1].split("=")[1];
+				sock.send(message);
 				console.log(username);
 				console.log(profilecon);
 			});
@@ -122,12 +126,12 @@
 						$('#messages').append("<span><img class=icon src=./static/" + data.chat.profilecon + ">" + data.chat.message + '</span><br>');
 					}
 					if (data.chat.type === 'connect') {
-	          $("p").html("");
+	          $("#current_users").html("");
 	          var data_list = data
 	          for (var user in data_list.current_users) {
 	            var profilecon = data_list["current_users"][user]["con"]
 	            var username = data_list["current_users"][user]["name"]
-	            $('#current_users').append("<img class=icon src=./static/" + profilecon + ">" + '  ' + username + '  ' + '<br>');
+	            $('#current_users').append("<span><img class=icon src=./static/" + profilecon + ">" + '  ' + username + '  ' + '</span><br>');
 	          }
 	        }
 				}
@@ -168,8 +172,8 @@
     </div>
 
     <div class="container" id="side_container">
-        <h6>Current Users</h6>
-        <p id="current_users"></p>
+        <h5>Current Users</h5>
+        <ul id="current_users"></ul>
     </div>
   </div>
 
