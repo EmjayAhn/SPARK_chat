@@ -45,7 +45,7 @@ def msg_send(message, charset="UTF-8"):
         message = message.replace("%", "\\")
         message = message.encode('utf-8').decode('unicode_escape')
         data['messages']['message'] = message
-        
+
         data['messages']['profilecon'] = mycon
         data['messages']['type'] = 'normal'
     send(data, broadcast=True)
@@ -60,3 +60,5 @@ def msg_send(message, charset="UTF-8"):
 
 if __name__ == '__main__':
     socket_io.run(app, debug=True)
+
+#jun test
