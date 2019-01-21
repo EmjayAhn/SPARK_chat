@@ -27,7 +27,6 @@ def msg_send(message, charset="UTF-8"):
     path = request.full_path.split("?")[1]
     if message == 'new_connect':
         sessionid = request.sid
-        data["user_no"] = len(data["current_users"])
         data["sessions"][sessionid] = {"name": username, "con": profilecon}
         data['current_users'][username] = {"name": username, "con": profilecon, "sessionid": sessionid}
         data['chat']['user'] = username
@@ -35,6 +34,7 @@ def msg_send(message, charset="UTF-8"):
         data['chat']['profilecon'] = profilecon
         data['chat']['type'] = 'connect'
         data['chat']["sid"] = sessionid
+        data["user_no"] = len(data["current_users"])
     else:
         sessionid = request.sid
         message = message.replace("%20", " ")
