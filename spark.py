@@ -58,3 +58,5 @@ def msg_send(message, charset="UTF-8"):
 
 if __name__ == '__main__':
     socket_io.run(app, debug=True)
+
+#jun test
