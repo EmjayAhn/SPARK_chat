@@ -127,12 +127,15 @@
 					}
 					if (data.chat.type === 'connect') {
 	          $("#current_users").html("");
+						$("#user_no").html("Current Users");
 	          var data_list = data
+						var user_no = data_list["user_no"]
+						$('#user_no').append("  [" + user_no + "]")
 	          for (var user in data_list.current_users) {
 	            var profilecon = data_list["current_users"][user]["con"]
 	            var username = data_list["current_users"][user]["name"]
 	            $('#current_users').append("<span><img class=icon src=./static/" + profilecon + ">" + '  ' + username + '  ' + '</span><br>');
-	          }
+						}
 	        }
 				}
         console.log('Received Message : ' + data.chat.type);
@@ -172,7 +175,7 @@
     </div>
 
     <div class="container" id="side_container">
-        <h5>Current Users</h5>
+				<h5 id=user_no></h5>
         <ul id="current_users"></ul>
     </div>
   </div>
